@@ -18,6 +18,14 @@ O objetivo central é desenvolver uma solução robusta para gestão de vendas, 
 
 ---
 
+## 🎨 Refinamento de Interface e UX (Vuetify)
+Para o estudo comparativo da Área do Cliente, foram aplicadas técnicas avançadas de UI para avaliar a percepção do usuário:
+* **Glassmorphism UI:** Implementação de transparência com `backdrop-filter: blur(10px)` no carrinho, avaliando estética moderna vs. legibilidade.
+* **Hierarquia de Foco:** Uso de modais `persistent` para guiar a conversão e minimizar erros de navegação no fechamento do pedido.
+* **Feedback Assíncrono:** Substituição de diálogos nativos por **Snackbars centralizados**, garantindo uma experiência de SPA (*Single Page Application*) fluida.
+
+---
+
 ## 📊 Documentação de Engenharia
 Os diagramas de arquitetura e casos de uso guiam o desenvolvimento deste MVP:
 * **Casos de Uso:** Autenticação, Definição de Pedido, Finalização e Gestão Administrativa.
@@ -31,10 +39,16 @@ Os diagramas de arquitetura e casos de uso guiam o desenvolvimento deste MVP:
 - [x] **Segurança:** Sistema de Login e proteção de credenciais via Variáveis de Ambiente (`.env`).
 - [x] **Infraestrutura:** Conexão otimizada via *Connection Pool* no MySQL 8.
 - [x] **Gestão de Cardápio:** CRUD de produtos integrado ao Backend (Node.js).
-- [ ] **Fluxo de Pedidos:** Carrinho de compras e atualização de status em tempo real.
+- [x] **Fluxo de Pedidos:** Carrinho de compras reativo, modal de resumo e persistência via API REST.
 
 ### Não Funcionais (Métricas Acadêmicas)
 A aplicação é avaliada rigorosamente por: **Desempenho (CPU/RAM), Segurança da Informação, Qualidade da Documentação e Escalabilidade.**
+
+---
+
+## 💾 Modelagem de Dados
+A persistência de vendas foi estruturada para garantir a integridade do estudo:
+* **Tabela `pedidos`:** Utilização de tipos `DECIMAL(10,2)` para precisão financeira e serialização **JSON** para a lista de itens, demonstrando flexibilidade no esquema relacional.
 
 ---
 
@@ -46,4 +60,4 @@ Para garantir a isonomia dos testes comparativos e a repetibilidade do experimen
 
 ---
 
-**Status do Projeto:** 🛠️ Fase de Integração de Dados e Comparação de UI Components.
+**Status do Projeto:** 🚀 **MVP Funcional Concluído.** Integração Frontend-Backend-Banco finalizada. Próxima fase: Desenvolvimento do Painel Administrativo com Ant Design Vue.
