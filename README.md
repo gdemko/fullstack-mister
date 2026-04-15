@@ -31,6 +31,23 @@ A camada de servidor foi otimizada para garantir a confiabilidade do estudo comp
 * **RESTful API:** Implementação de rotas assíncronas no Express.js, garantindo o processamento de pedidos em tempo real.
 * **Tratamento de Erros:** Sistema de captura de exceções (Try/Catch) com logs detalhados de requisição, permitindo o diagnóstico rápido de falhas de conectividade ou banco de dados.
 * **Precisão Financeira:** Utilização do tipo `DECIMAL(10,2)` no MySQL para evitar erros de arredondamento comuns em tipos de ponto flutuante (`FLOAT`), essencial para a integridade dos relatórios financeiros.
+* **Programação Assíncrona Moderna:** Uso extensivo de Async/Await para manipulação de I/O (entrada e saída), garantindo que o servidor Node.js permaneça não-bloqueante (non-blocking) mesmo sob alta carga de requisições de múltiplos frontends.
+
+---
+
+## 🚦 Como Executar a Aplicação
+
+```bash
+# 1. BACKEND
+cd backend
+npm install
+nodemon server.js
+
+# 2. FRONTENDS (Cliente ou Admin)
+cd frontend/cliente # ou frontend/admin
+npm install
+npm run dev
+```
 
 ---
 
@@ -62,4 +79,4 @@ Para garantir a isonomia dos testes comparativos e a repetibilidade do experimen
 
 ---
 
-**Status do Projeto:** 🚀 **MVP Funcional Concluído.** Integração Cliente-Servidor-Banco finalizada com sucesso. Próxima etapa: Desenvolvimento do Painel Administrativo com **Ant Design Vue**.
+**Status do Projeto:** 🚀 **Módulos Cliente e Administrativo Integrados.** Integração Full-Stack (Vue/Node/MySQL) concluída, com painéis operacionais em Vuetify e Ant Design Vue.

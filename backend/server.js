@@ -10,27 +10,41 @@ app.use(express.json());
 
 // --- ROTAS GET ---
 app.get('/', (req, res) => {
-    res.send('🍔 Servidor do Mister Lanches está ONLINE!');
+    res.send('Servidor do Mister Lanches está ONLINE!');
 });
 
+// Busca produtos
 app.get('/api/produtos', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM produtos');
         res.json(rows);
     } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
         res.status(500).json({ error: 'Erro ao buscar produtos'});
     }
 });
 
-// --- ROTA POST (PEDIDOS) ---
-// Certifique-se de que ela está ANTES do app.listen
-app.post('/api/pedidos', async (req, res) => { // Adicionei async aqui por precaução
+// Listando pedidos frontend/admin
+app.get('/api/pedidos', async (req, res) => {
+    console.log("--- Consultando pedidos para o Admin ---");
+    const query = "SELECT * FROM pedidos ORDER BY id DESC";
+
+    try {
+        const [rows] = await db.query(query);
+        res.json(rows);
+    } catch (err) {
+        console.error("Erro ao buscar pedidos:", err.message);
+        res.status(500).json({ error: 'Erro ao carregar pedidos' });
+    }
+});
+
+// --- ROTA POST (SALVANDO PEDIDOS) ---
+app.post('/api/pedidos', async (req, res) => {
     const { itens, total } = req.body;
     const itensJSON = JSON.stringify(itens);
     const query = 'INSERT INTO pedidos (itens, total) VALUES (?, ?)';
     
     try {
-        // Se seu db.js usa promises (como na rota de produtos), use assim:
         await db.query(query, [itensJSON, total]);
         res.status(201).json({ message: "Pedido realizado com sucesso!" });
     } catch (err) {
@@ -39,7 +53,7 @@ app.post('/api/pedidos', async (req, res) => { // Adicionei async aqui por preca
     }
 });
 
-// --- INICIALIZAÇÃO (SEMPRE POR ÚLTIMO) ---
+// --- INICIALIZAÇÃO ---
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log('\n=========================================');
